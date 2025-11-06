@@ -4,53 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: #8b6b4a;   /* بني ذهبي */
+      --bg: #f8f5f0;       /* بيج فاتح */
+      --card-bg: #fffdf9;  /* أبيض دافئ */
+      --text: #3b2f25;
+    }
+
     body {
-      font-family: "Tahoma", sans-serif;
-      background-color: #f4f1ec;
-      display: flex;              /* مهم لتوسيط المحتوى */
-      justify-content: center;    /* توسيط أفقي */
-      align-items: center;        /* توسيط عمودي */
-      height: 100vh;              /* ارتفاع كامل الشاشة */
+      font-family: "Cairo", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       margin: 0;
     }
 
     .login-box {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-      width: 300px;
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      width: 330px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     h2 {
-      text-align: center;
-      color: #4b3f33;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      color: var(--accent);
+      font-weight: 700;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 5px rgba(139, 107, 74, 0.3);
     }
 
     button {
       width: 100%;
-      padding: 10px;
-      background-color: #a97b50;
-      color: #fff;
+      padding: 12px;
+      background-color: var(--accent);
+      color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     button:hover {
-      background-color: #8c643d;
+      background-color: #7b5f3f;
+      transform: scale(1.03);
+    }
+
+    .extra-links {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -61,15 +102,19 @@
     <form id="loginForm">
       <input type="text" placeholder="اسم المستخدم" required>
       <input type="password" placeholder="كلمة المرور" required>
-      <button type="submit">إرسال</button>
+      <button type="submit">دخول</button>
     </form>
+    <div class="extra-links">
+      <p>ليس لديك حساب؟ <a href="#">إنشاء حساب</a></p>
+      <p><a href="#">نسيت كلمة المرور؟</a></p>
+    </div>
   </div>
 
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      // مباشرة يفتح صفحة index.html
-      window.location.href = "index.html";
+      // بعد تسجيل الدخول ينتقل لصفحة المكتبة
+      window.location.href = "library.html";
     });
   </script>
 
