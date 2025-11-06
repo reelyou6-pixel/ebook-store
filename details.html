@@ -1,17 +1,17 @@
 <!doctype html>
-
 <html lang="ar">
 <head>
   <meta charset="utf-8">
   <title>تفاصيل الكتاب</title>
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
 
 <header>
-  <h1>تفاصيل الكتاب</h1>
+  <h1> تفاصيل الكتاب</h1>
   <div class="actions">
-    <a href="index.html">الرئيسية</a>
+    <a href="index.html"> الرئيسية</a>
     <a href="library.html">المفضلة</a>
   </div>
 </header>
@@ -25,20 +25,22 @@
   const book = JSON.parse(localStorage.getItem('currentBook'));
 
   if (book) {
+    // لو الكتاب موجود
     container.innerHTML = `
       <img src="${book.img}" alt="${book.title}">
       <h2>${book.title}</h2>
       <p>${book.desc}</p>
       <div class="btns">
-        <p><strong>السعر:</strong> ${book.price.toFixed(2)} $</p>
-        <button id="sampleBtn" class="primary">تحميل عينة 📖</button>
+      <p><strong>السعر:</strong> ${book.price.toFixed(2)} $</p>
+        <button id="sampleBtn"class="primary">تحميل عينة 📖</button>
         <button id="buyBtn" class="primary">ضع في المفضلة</button>
       </div>
+
     `;
 
     // تحميل العينة
     document.getElementById('sampleBtn')?.addEventListener('click', () => {
-      const blob = new Blob([book.sample], { type:'text/plain;charset=utf-8' });
+      const blob = new Blob([book.sample], {type:'text/plain;charset=utf-8'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -47,30 +49,26 @@
       URL.revokeObjectURL(url);
     });
 
-    // إضافة للمكتبة + تحويل إلى صفحة تسجيل الدخول
+    // إضافة للمكتبة
     document.getElementById('buyBtn')?.addEventListener('click', () => {
       const lib = JSON.parse(localStorage.getItem('myLibrary') || '[]');
-      const exists = lib.find(x => x.id === book.id);
-
-      if (!exists) {
+      if (!lib.find(x => x.id === book.id)) {
         lib.push(book);
         localStorage.setItem('myLibrary', JSON.stringify(lib));
-        alert('✅ تم إضافة الكتاب إلى المفضلة بنجاح!');
-        // تحويل المستخدم إلى صفحة تسجيل الدخول
-        window.location.href = 'login.html';
+        alert('✅ تم إضافة الكتاب إلى مكتبتك');
       } else {
-        alert('📚 هذا الكتاب موجود بالفعل في المفضلة.');
+        alert('📚 هذا الكتاب موجود بالفعل في مكتبتك');
       }
     });
 
   } else {
-    container.innerHTML = '<p>❌ لم يتم العثور على تفاصيل الكتاب.</p>';
+    // لو ما فيه كتاب
+    container.innerHTML = '<p>❌ لم يتم العثور على كتاب</p>';
   }
 </script>
-
 <footer>
-  <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
-</footer>
+   <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
 
+  </footer>
 </body>
 </html>
