@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <title>المفضلة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1> المفضلة</h1>
+  <div class="actions">
+    <a href="index.html"> الرئيسية</a>
+  </div>
+</header>
+
+<main>
+  <section class="list" id="libraryList"></section>
+  <p id="emptyMsg" style="color:#666">لا توجد كتب في المكتبة — اشترِ كتابًا من المتجر.</p>
+</main>
+
+<script>
+function renderLibrary(){
+  const listEl = document.getElementById('libraryList');
+  const emptyMsg = document.getElementById('emptyMsg');
+  const lib = JSON.parse(localStorage.getItem('myLibrary') || '[]');
+  listEl.innerHTML = '';
+  if(lib.length === 0){
+    emptyMsg.style.display = 'block';
+    return;
+  }
+  emptyMsg.style.display = 'none';
+
+  lib.forEach(b=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    item.innerHTML = `
+      <div class="left">
+      <div class="cover small"><img src="${b.img}" alt="${b.title}" style="width:100%; height:100px; object-fit:cover; border-radius:8px;">
+
+
+</div>
+
+        <div class="meta">
+          <div class="title">${b.title}</div>
+          <div class="small">تمت الإضافة: ${new Date().toLocaleDateString('ar-EG')}</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="view" data-id="${b.id}">تفاصيل</button>
+        <button class="download" data-id="${b.id}">تحميل</button>
+        <button class="remove" data-id="${b.id}">حذف</button>
+      </div>
+    `;
+    listEl.appendChild(item);
+  });
+
+  // تفاصيل
+  document.querySelectorAll('.view').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const lib = JSON.parse(localStorage.getItem('myLibrary') || '[]');
+      const book = lib.find(x=>x.id === id);
+      if(book){
+        localStorage.setItem('currentBook', JSON.stringify(book));
+        location.href = 'details.html';
+      }
+    });
+  });
+
+  // تحميل
+  document.querySelectorAll('.download').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const lib = JSON.parse(localStorage.getItem('myLibrary') || '[]');
+      const b = lib.find(x=>x.id === id);
+      if(!b) return alert('❌ لم يتم العثور على الكتاب');
+      const content = `الكتاب: ${b.title}\n\n(محتوى تجريبي للتحميل)`;
+      const blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${b.title}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  });
+
+  // حذف
+  document.querySelectorAll('.remove').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const newLib = lib.filter(x=>x.id !== id);
+      localStorage.setItem('myLibrary', JSON.stringify(newLib));
+      renderLibrary();
+    });
+  });
+}
+
+renderLibrary();
+</script>
+<footer>
+   <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
+
+  </footer>
+</body>
+</html>

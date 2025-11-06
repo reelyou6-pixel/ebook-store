@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <title>reading books</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+</head>
+<body>
+
+<header>
+  <h1> reading books</h1>
+  <div class="actions">
+    <input type="search" id="search" placeholder="ابحث عن كتاب...">
+    <a href="library.html">المفضلة</a>
+  </div>
+</header>
+
+<main>
+  <section class="grid" id="booksGrid"></section>
+</main>
+
+
+
+<script>
+const books = [
+  {id: 'b1',title: 'السماح بالرحيل',  price: 15.00,desc: 'يُعدُّ كتاب السماح بالرحيل من أبرز أعمال د. ديفيد هاوكينز، حيث يقدم فيه آلية عملية للتخلص من المشاعر السلبية والقيود النفسية التي تعيق التقدم الشخصي. يركز الكتاب على مفهوم “التسليم” أو “السماح بالرحيل” كوسيلة للتحرر الداخلي، مما يساعد الأفراد على تحقيق السلام الداخلي والنمو الروحي.',pdfUrl: 'السماح-بالرحيل-ل-ديفيد-هاوكينز.pdf',img: 'covers/11.jpg' },
+
+  { id: 'b2', title: 'فن اللامبالاة' , price: 10.50, desc: 'نبذة عن الكتاب : يدعو إلى أن سعادتنا الحقيقية لا تأتي من محاولة تجنّب كل ألم أو تجربة سلبية، بل من اختيار المعارك التي نستحق أن نبذل فيها الجهد، والتركيز على القيم الحقيقية التي تُعطي معنى للحياة. أيّ أن نختار بما نهتم، لا أن نهتم بكل شيء.'  ,pdfUrl:'Ketabpedia.com_فن-اللامبالاةك ',img: 'covers/22.jpg'},
+
+  { id: 'b3', title: 'هكذا تتعافى', price:34.90, desc: 'نبذة عن الكتاب : يمكن أن يبدأ الشفاء بحدث يحدث مرّة واحدة- عادةً ما يكون على شكل خسارة مفاجئة تعرقل توقعاتنا حول ما قد يكون عليه المستقبل. ومع ذلك، فإنّ العمل الحقيقي للشفاء يكمن في السماح لهذه العرقلة بإيقاظنا من حالة عميقة من اللا وعي، وتحرير الشخصيات التي تكيّفنا معها، وبدء تجميع الحقيقة الكاملة وفي وعي تام لمن كان من المفترض أن نكون عليه.علينا ألا نتوقع من التجارب المحفّزة على الشفاء أن تدفعنا إلى التعافي ببساطة من صدمة الأنا، بل علينا أن ندرك المرة الأولى، وفي كثير من الحالات، كبرياءنا فحسب. وتلك هي لحظة المصالحة حيث يُطلب منا إدراك ما وصفه مايكل مورفي بأنّه: «حياة أعظم تضغط للخروج إلى الوجود.',pdfUrl:'هكذا-تتعافى-ketabpedia.com_' ,img:'covers/33.jpg'},
+  {
+    id: 'b4',title: 'شقة الحرية',  price: 59.25,desc: 'رواية شقة الحرية تُعد من أبرز أعمال الأديب غازي القصيبي، حيث تسلّط الضوء على مرحلة مهمة من حياة مجموعة من الشباب العرب الذين يدرسون في مصر في فترة الخمسينات والستينات. تتناول الرواية قضايا الحرية، الهوية، والصراعات الفكرية والسياسية التي عاشها الجيل العربي آنذاك. من خلال "شقة الحرية" التي يجتمع فيها الأبطال، يعرض القصيبي بأسلوبه الساخر والواقعي جدلية الصراع بين التقاليد والحداثة، وبين القيم الاجتماعية والانفتاح الفكري، ليكشف عن هموم الشباب العربي في مواجهة أسئلة الحرية، الحب، والسياسة.',pdfUrl:'شقة-الحرية',img:'covers/44.jpg' },
+];
+
+const grid = document.getElementById('booksGrid');
+const search = document.getElementById('search');
+
+function renderBooks(list){
+  grid.innerHTML = '';
+  list.forEach(b=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+  <div class="cover">
+    <img src="${b.img}" alt="${b.title}" style="width:100%; height:200px; object-fit:cover; border-radius:8px;">
+  </div>
+  <div class="title">${b.title}</div>
+  <div class="meta">
+    <div class="price">${b.price.toFixed(2)} $</div>
+    <button class="primary">تفاصيل</button>
+  </div>
+`;
+
+    card.querySelector('button').addEventListener('click', ()=>{
+      localStorage.setItem('currentBook', JSON.stringify(b));
+      location.href = 'details.html';
+    });
+    grid.appendChild(card);
+  });
+
+}
+
+search.addEventListener('input', ()=>{
+  const term = search.value.trim();
+  const filtered = books.filter(b=>b.title.includes(term));
+  renderBooks(filtered);
+});
+
+renderBooks(books);
+</script>
+<footer>
+   <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
+
+  </footer>
+</body>
+</html>

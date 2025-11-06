@@ -1,0 +1,257 @@
+/* 🎨 ألوان وهوية الموقع */
+:root {
+  --accent: #8b6b4a;   /* بني ذهبي كلاسيكي */
+  --bg: #f8f5f0;       /* بيج فاتح */
+  --card-bg: #fffdf9;  /* أبيض دافئ */
+}
+
+/* 🧭 التنسيق العام */
+body {
+  background-color: var(--bg);
+  font-family: "Cairo", sans-serif;
+  color: #3b2f25;
+  direction: rtl;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 🔹 الهيدر */
+header {
+  background-color: #e8dcc7;           /* بيج ناعم */
+  border-bottom: 8px solid #c8b498;    /* ذهبي فاتح */
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #4a3b2c; /* بني داكن */
+}
+
+/* 🔸 روابط الإجراءات */
+.actions a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.actions a:hover {
+  background: #6f5338;
+}
+
+/* 📚 شبكة الكتب */
+.books {
+  padding: 40px;
+  background: linear-gradient(to bottom, #f8f5f0, #efe7dc);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.book {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+.book:hover {
+  transform: translateY(-5px);
+}
+
+/* 🔍 حقل البحث */
+input[type="search"] {
+  padding: 10px;
+  border-radius: 60px;
+  border: 1px solid #bfa98a;
+  width: 220px;
+  background-color: #fffdf9;
+}
+
+/* 🧱 بطاقات الكتب */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 40px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* 🖼️ صورة الغلاف */
+.card .cover img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 📖 عنوان الكتاب */
+.card .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 10px 5px;
+  color: #4a3b2c;
+  text-align: center;
+}
+
+/* 💰 معلومات الكتاب */
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+/* 🔘 الأزرار */
+.btns {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.btns button {
+  width: 200px;
+  padding: 10px 20px;
+  border: 2px solid #cdb18a;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #8b6b4a;
+  color: #fff;
+  transition: 0.3s;
+}
+.btns button:hover {
+  opacity: 0.85;
+  background-color: #735539;
+}
+
+/* 📘 الغلاف */
+.cover {
+  height: 180px;
+  border-radius: 8px;
+  background: #e6d9c9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #6d5c4a;
+}
+.cover.small img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* 🦶 الفوتر */
+footer {
+  background-color: #e8dcc7;
+  color: #3b2f25;
+  text-align: center;
+  padding: 15px 0;
+  border-top: 2px solid #c8b498;
+  font-size: 14px;
+  margin-top: 25px;
+}
+
+/* 📖 قسم المكتبة */
+.list {
+  display: grid;
+  gap: 12px;
+}
+.item {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item .left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.cover.small {
+  width: 64px;
+  height: 88px;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 800;
+}
+.small {
+  font-size: .85rem;
+  color: #666;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+}
+.login-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #a97b50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #8a643f;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      font-size: 14px;
+      display: none;
+    }
+  
+   
