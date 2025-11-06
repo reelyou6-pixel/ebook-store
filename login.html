@@ -1,19 +1,66 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول</title>
- 
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #f4f1ec;
+      display: flex;              /* مهم لتوسيط المحتوى */
+      justify-content: center;    /* توسيط أفقي */
+      align-items: center;        /* توسيط عمودي */
+      height: 100vh;              /* ارتفاع كامل الشاشة */
+      margin: 0;
+    }
+
+    .login-box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4b3f33;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #a97b50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8c643d;
+    }
+  </style>
 </head>
 <body>
 
   <div class="login-box">
     <h2>تسجيل الدخول</h2>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="اسم المستخدم" required>
-      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <input type="text" placeholder="اسم المستخدم" required>
+      <input type="password" placeholder="كلمة المرور" required>
       <button type="submit">إرسال</button>
     </form>
   </div>
@@ -21,20 +68,8 @@
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      if (username && password) {
-        // حفظ اسم المستخدم (اختياري)
-        localStorage.setItem("loggedInUser", username);
-
-        alert("✅ تم تسجيل الدخول بنجاح!");
-        // تحويل المستخدم إلى صفحة المفضلة بعد تسجيل الدخول
-        window.location.href = "library.html";
-      } else {
-        alert("❌ الرجاء إدخال اسم المستخدم وكلمة المرور");
-      }
+      // مباشرة يفتح صفحة index.html
+      window.location.href = "index.html";
     });
   </script>
 
