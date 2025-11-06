@@ -1,45 +1,17 @@
 <!doctype html>
+
 <html lang="ar">
 <head>
   <meta charset="utf-8">
   <title>تفاصيل الكتاب</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .details {
-      max-width: 400px;
-      margin: 200px auto;
-      background: #fff;
-      padding: 80px;
-      border-radius: 60px;
-      box-shadow: 0 12px 18px rgba(0,0,0,0.1);
-    }
-    .details img {
-      width:70%;
-      max-height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 40px;
-    }
-    .details h2 {
-      margin-bottom: 15px;
-      color: #3b2f25;
-    }
-    .details p {
-      margin-bottom: 15px;
-      line-height: 1.7;
-    }
-    .details .price {
-      font-weight: bold;
-      color: #9b7d60;
-    }
-  </style>
 </head>
 <body>
 
 <header>
-  <h1> تفاصيل الكتاب</h1>
+  <h1>تفاصيل الكتاب</h1>
   <div class="actions">
-    <a href="index.html"> الرئيسية</a>
+    <a href="index.html">الرئيسية</a>
     <a href="library.html">المفضلة</a>
   </div>
 </header>
@@ -53,22 +25,20 @@
   const book = JSON.parse(localStorage.getItem('currentBook'));
 
   if (book) {
-    // لو الكتاب موجود
     container.innerHTML = `
       <img src="${book.img}" alt="${book.title}">
       <h2>${book.title}</h2>
       <p>${book.desc}</p>
       <div class="btns">
-      <p><strong>السعر:</strong> ${book.price.toFixed(2)} $</p>
-        <button id="sampleBtn"class="primary">تحميل عينة 📖</button>
+        <p><strong>السعر:</strong> ${book.price.toFixed(2)} $</p>
+        <button id="sampleBtn" class="primary">تحميل عينة 📖</button>
         <button id="buyBtn" class="primary">ضع في المفضلة</button>
       </div>
-
     `;
 
     // تحميل العينة
     document.getElementById('sampleBtn')?.addEventListener('click', () => {
-      const blob = new Blob([book.sample], {type:'text/plain;charset=utf-8'});
+      const blob = new Blob([book.sample], { type:'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -77,26 +47,30 @@
       URL.revokeObjectURL(url);
     });
 
-    // إضافة للمكتبة
+    // إضافة للمكتبة + تحويل إلى صفحة تسجيل الدخول
     document.getElementById('buyBtn')?.addEventListener('click', () => {
       const lib = JSON.parse(localStorage.getItem('myLibrary') || '[]');
-      if (!lib.find(x => x.id === book.id)) {
+      const exists = lib.find(x => x.id === book.id);
+
+      if (!exists) {
         lib.push(book);
         localStorage.setItem('myLibrary', JSON.stringify(lib));
-        alert('✅ تم إضافة الكتاب إلى مكتبتك');
+        alert('✅ تم إضافة الكتاب إلى المفضلة بنجاح!');
+        // تحويل المستخدم إلى صفحة تسجيل الدخول
+        window.location.href = 'login.html';
       } else {
-        alert('📚 هذا الكتاب موجود بالفعل في مكتبتك');
+        alert('📚 هذا الكتاب موجود بالفعل في المفضلة.');
       }
     });
 
   } else {
-    // لو ما فيه كتاب
-    container.innerHTML = '<p>❌ لم يتم العثور على كتاب</p>';
+    container.innerHTML = '<p>❌ لم يتم العثور على تفاصيل الكتاب.</p>';
   }
 </script>
-<footer>
-   <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
 
-  </footer>
+<footer>
+  <p>© 2025 مكتبة القراءة | جميع الحقوق محفوظة | <a href="terms.html">الشروط والأخلاقيات</a></p>
+</footer>
+
 </body>
 </html>
