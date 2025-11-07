@@ -224,11 +224,15 @@ footer {
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       width: 320px;
       text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       transition: transform 0.3s ease;
     }
 
     .login-box:hover {
-      transform: scale(1.02);
+      transform: translate(-50%, -50%) scale(1.02);
     }
 
     h2 {
