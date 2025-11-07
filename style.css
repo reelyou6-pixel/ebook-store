@@ -168,7 +168,7 @@ input[type="search"] {
   border-radius: 4px;
 }
 
-/* 🦶 الفوتر */
+/*  الفوتر */
 footer {
   background-color: #e8dcc7;
   color: #3b2f25;
@@ -288,27 +288,3 @@ button {
 button:hover {
   background-color: #8c643d;
 }
-```
-
-  </style>
-</head>
-<body>
-
-  <div class="login-box">
-    <h2>تسجيل الدخول</h2>
-    <form id="loginForm">
-      <input type="text" placeholder="اسم المستخدم" required>
-      <input type="password" placeholder="كلمة المرور" required>
-      <button type="submit">إرسال</button>
-    </form>
-  </div>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      window.location.href = "home.html"; // ← يفتح الصفحة المطلوبة بعد الدخول
-    });
-  </script>
-
-</body>
-</html>
